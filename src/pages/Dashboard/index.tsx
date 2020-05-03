@@ -88,24 +88,20 @@ const Dashboard: React.FC = () => {
             </thead>
 
             <tbody>
-              {transactions.map(item => (
-                <tr key={item.id}>
-                  <td className="title">{item.title}</td>
-                  {item.type === 'income' ? (
-                    <td className="income">{formatValue(item.value)}</td>
+              {transactions.map(transaction => (
+                <tr key={transaction.id}>
+                  <td className="title">{transaction.title}</td>
+                  {transaction.type === 'income' ? (
+                    <td className="income">{formatValue(transaction.value)}</td>
                   ) : (
-                    <td className="outcome">{-formatValue(item.value)}</td>
+                    <td className="outcome">
+                      {`- ${formatValue(transaction.value)}`}
+                    </td>
                   )}
-                  <td>{item.category.title}</td>
-                  <td>{item.formattedDate}</td>
+                  <td>{transaction.category.title}</td>
+                  <td>{transaction.formattedDate}</td>
                 </tr>
               ))}
-              {/* <tr>
-                <td className="title">Website Hosting</td>
-                <td className="outcome">- R$ 1.000,00</td>
-                <td>Hosting</td>
-                <td>19/04/2020</td>
-              </tr> */}
             </tbody>
           </table>
         </TableContainer>
